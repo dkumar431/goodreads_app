@@ -1,4 +1,4 @@
 Goodreads.configure(
-  api_key: "a6AR07FSsB7JzK2cpcwH8g",
-  api_secret: "xX38qkFVomLloavJNujCXZbJzg1Lmd79xC35qNjL4o"
+  api_key: "n5kQqZujrUAQtfjFQ1w7g",
+  api_secret: "G90VW2zngQoQTHmknN6G69C99JuQZxV946LgWSElaE"
 )
