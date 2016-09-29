@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  goodreads_user_id: 
+  name: MyString
+  img_url: MyString
+  address: MyString
+  join_date: 2016-09-28
+  gender: MyString
+
+two:
+  goodreads_user_id: 
+  name: MyString
+  img_url: MyString
+  address: MyString
+  join_date: 2016-09-28
+  gender: MyString

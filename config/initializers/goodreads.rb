@@ -1,4 +1,2 @@
-Goodreads.configure(
-  api_key: "n5kQqZujrUAQtfjFQ1w7g",
-  api_secret: "G90VW2zngQoQTHmknN6G69C99JuQZxV946LgWSElaE"
-)
+GREADS = {}
+GREADS[:get_user_url] = 'http://www.goodreads.com/user/show'

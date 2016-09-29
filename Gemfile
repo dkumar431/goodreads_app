@@ -28,6 +28,8 @@ gem 'goodreads'
 gem 'rest-client'
 gem 'oauth'
 gem 'httparty'
+gem 'mysql2'
+gem 'json'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
