@@ -4,11 +4,22 @@
         <div class="row">
             <!-- sidebar -->
             <div class="column col-sm-3" id="sidebar">
-                <a class="logo" href="#">B</a>
+                <a class="logo" href="#">
+                  <%= image_tag @user.img_url, class: :profileimg %>
+                </a>
                 <ul class="nav">
-                    <li class="active"><a href="#featured">Featured</a>
+                    <li class="active"><a href="#featured">
+                      <%= @user.name %>
+                    </a>
                     </li>
-                    <li><a href="#stories">Stories</a>
+                    <li><a href="#stories">
+                      <%= @user.address %>
+                    </a>
+                    </li>
+                    <li><a href="#stories">
+                      
+                      Member since <%= @user_p.get_timeframe %>
+                    </a>
                     </li>
                 </ul>
                 <ul class="nav hidden-xs" id="sidebar-footer">

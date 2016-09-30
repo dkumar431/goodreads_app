@@ -19,6 +19,7 @@ class ProfilesController < ApplicationController
       @new_user.save
       @user = @new_user
     end
+    @user_p = UserPresenter.new(@user,view_context)
   end
 
   private
