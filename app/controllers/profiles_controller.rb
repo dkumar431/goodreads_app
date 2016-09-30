@@ -12,8 +12,9 @@ class ProfilesController < ApplicationController
 
   def show
     @user = User.find_by_goodreads_user_id(params[:id])
+    
     if @user.blank? 
-      response = RestClient.get(GREADS[:get_user_url],params: goodreads_params('25814733'))
+      response = RestClient.get(GREADS[:get_user_url],params: goodreads_params(params[:id]))
       user_details = Hash.from_xml(response)
       @new_user = User.new(user_params(user_details))
       @new_user.save

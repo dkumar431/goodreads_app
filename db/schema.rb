@@ -15,13 +15,13 @@ ActiveRecord::Schema.define(version: 20160929021649) do
 
   create_table "users", force: :cascade do |t|
     t.integer  "goodreads_user_id", limit: 8
-    t.string   "name",              limit: 255
-    t.string   "img_url",           limit: 255
-    t.string   "address",           limit: 255
-    t.string   "join_date",         limit: 255
-    t.string   "gender",            limit: 255
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.string   "name"
+    t.string   "img_url"
+    t.string   "address"
+    t.string   "join_date"
+    t.string   "gender"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end
