@@ -22,13 +22,19 @@ class ProfilesController < ApplicationController
     end
     @user_p = UserPresenter.new(@user,view_context)
   end
+  
+  def my_books
+    response = RestClient.get(GREADS[:get_user_books], params: {id: params[:id]})
+    
+    binding.pry
+  end
 
   private
   def goodreads_params(id)
     { id: id,  format: 'xml', key: 'n5kQqZujrUAQtfjFQ1w7g' }
   end
+  
   def user_params(user_details)
-    
     user = {
       goodreads_user_id: user_details["GoodreadsResponse"]["user"]["id"],
       name: user_details["GoodreadsResponse"]["user"]["name"],
@@ -37,7 +43,6 @@ class ProfilesController < ApplicationController
       address: user_details["GoodreadsResponse"]["user"]["location"],
       join_date: user_details["GoodreadsResponse"]["user"]["joined"]
     }
-
   end
 
 end
