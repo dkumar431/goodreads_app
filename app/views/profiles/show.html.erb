@@ -5,20 +5,20 @@
             <!-- sidebar -->
             <div class="column col-sm-3" id="sidebar">
                 <a class="logo" href="#">
-                  <%= image_tag @user.img_url, class: :profileimg %>
+                  <%= image_tag @user_p.user.img_url, class: :profileimg %>
                 </a>
                 <ul class="nav">
                     <li class="active"><a href="#featured">
-                      <%= @user.name %>
+                      <%= @user_p.user.name %>
                     </a>
                     </li>
                     <li><a href="#stories">
-                      <%= @user.address %>
+                      <%= @user_p.user.address %>
                     </a>
                     </li>
                     <li><a href="#stories">
-                      
                       Member since <%= @user_p.get_timeframe %>
+                      <br> Join Date <%= @user_p.user.join_date %>
                     </a>
                     </li>
                 </ul>
