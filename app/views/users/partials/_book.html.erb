@@ -1,0 +1,30 @@
+<div class="col-sm-12" id="featured">   
+    <div class="page-header text-muted">
+        My Owned Books
+    </div> 
+</div>
+
+<!--/top story-->
+<% @user_books["owned_books"]["owned_book"].each do |item|%>
+    <div class="row">    
+        
+        <div class="col-sm-10" id="bookdetails">
+            <h3><%= item["book"]["title"] %></h3>
+            <h4><span class="label label-default"><%= item["book"]["authors"]["author"]["name"] %></span></h4>
+            <h4>
+                <small class="text-muted">
+                    <%= item["book"]["authors"]["author"]["average_rating"] %><br>
+                    <%= truncate item["book"]["description"].html_safe, length: 300, :escape => false %>
+                    <%= link_to 'read more', item["book"]["link"] %> 
+                </small>
+            </h4>
+        </div>
+
+        <div class="col-sm-2" id="bookimg">
+            <%= link_to  item["book"]["link"],  :class => "pull-right" do %>
+                <%= image_tag (item["book"]["image_url"]) %>
+            <% end %>
+        </div> 
+        <br>
+    </div>
+<% end %>    

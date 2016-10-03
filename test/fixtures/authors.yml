@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  goodreads_author_id: 1
+  name: MyString
+  image_url: MyString
+  book_url: MyString
+  rating: 1.5
+
+two:
+  goodreads_author_id: 1
+  name: MyString
+  image_url: MyString
+  book_url: MyString
+  rating: 1.5

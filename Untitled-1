@@ -1,39 +1,4 @@
 
-<div class="wrapper">
-    <div class="box">
-        <div class="row">
-            <!-- sidebar -->
-            <div class="column col-sm-3" id="sidebar">
-                <a class="logo" href="#">
-                  <%= image_tag @user_p.user.img_url, class: :profileimg %>
-                </a>
-                <ul class="nav">
-                    <li class="active"><a href="#featured">
-                      <%= @user_p.user.name %>
-                    </a>
-                    </li>
-                    <li><a href="#stories">
-                      <%= @user_p.user.address %>
-                    </a>
-                    </li>
-                    <li><a href="#stories">
-                      Member since <%= @user_p.get_timeframe %>
-                      <br> Join Date <%= @user_p.user.join_date %>
-                    </a>
-                    </li>
-                </ul>
-                <ul class="nav hidden-xs" id="sidebar-footer">
-                    <!--<li>-->
-                    <!--  <a href="http://www.bootply.com"><h3>Basis</h3>Made with <i class="glyphicon glyphicon-heart-empty"></i> by Bootply</a>-->
-                    <!--</li>-->
-                </ul>
-            </div>
-            <!-- /sidebar -->
-          
-            <!-- main -->
-            <div class="column col-sm-9" id="main">
-                <div class="padding">
-                    <div class="full col-sm-9">
                       
                         <!-- content -->
                         
@@ -196,10 +161,4 @@
                       <hr>
                         
                       
-                    </div><!-- /col-9 -->
-                </div><!-- /padding -->
-            </div>
-            <!-- /main -->
-        </div>
-    </div>
-</div>
+                    

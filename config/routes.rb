@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
-  resources :profiles do 
-    member do
-      get 'my_books'
+
+  root to: 'users#login'
+  
+  resources :users, only: [:show] do 
+    collection do
+      get :authenticate
+      get :show
     end
   end
 
+  resource :books do 
+    collection do 
+      get :owned
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

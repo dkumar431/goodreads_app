@@ -1,0 +1,45 @@
+
+book
+id name isbn  
+
+
+
+
+book_statuses     
+
+1 owned_books     
+2 to_read
+3 currently_reading
+4 read
+
+
+book_types
+1 Thriller
+2 Romantic
+3 Business
+
+
+user_id  book_id  book_statuses_id
+ 
+roles
+id type
+1  admin
+2  manager
+3  customer 
+
+
+ user_roles 
+
+ user_id  role_id
+ 1         1
+ 1         2
+ 1         3
+
+ books_generosities
+ book_id    generosity_id
+
+
+
+ generosity 
+
+ 

@@ -1,11 +1,8 @@
-require 'goodreads'
-require 'oauth'
+arr = [{:name=>:deepak, :id=>1}, {:name=>:ajay, :id=>2}, {:name=>:deepak, :id=>1}]
+arr_new = []
 
- KEY =  'n5kQqZujrUAQtfjFQ1w7g'
- SECRET = 'G90VW2zngQoQTHmknN6G69C99JuQZxV946LgWSElaE'
- 
- request_token = OAuth::Consumer.new(KEY, SECRET, site: 'http://www.goodreads.com').get_request_token
+arr.each do |element|
+  arr_new << element unless arr_new.include?(element)
+end
 
- puts request_token.authorize_url
-
- access_token = request_token.get_access_token
+puts arr_new

@@ -21,9 +21,11 @@ module GoodreadsApp
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
+    #config.active_record.raise_in_transactional_callbacks = true
+    config.autoload_paths << Rails.root.join('lib')
     config.after_initialize do |app|
       app.config.paths.add 'app/presenters', :eager_load => true
+      #app.config.paths.add 'lib/*.rb', :eager_load => true
     end
   end
 end
