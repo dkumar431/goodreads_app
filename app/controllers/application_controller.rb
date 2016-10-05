@@ -10,8 +10,10 @@ class ApplicationController < ActionController::Base
   end
 
   def goodreads_client
+    binding.pry
     session[:access_token] ||= session[:request_token].get_access_token
     @client ||= Goodreads.new(oauth_token: session[:access_token])
+    
   end
 
 end
