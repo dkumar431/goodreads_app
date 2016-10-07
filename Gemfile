@@ -31,6 +31,10 @@ gem 'httparty'
 gem 'mysql2'
 gem 'json'
 gem 'activerecord-session_store'
+gem 'sidekiq'                                                                  
+gem 'sidekiq-client-cli'
+gem 'whenever', :require => false
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

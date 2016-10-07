@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
 
-  before_action :check_access_token, only: [:my_books, :login]
+  #before_action :check_access_token, only: [:my_books, :login]
 
   def login
+    UserMailer.sample_email('dkumar431@gmail.com').deliver_now
+    #binding.pry
   end
 
   def authenticate  
