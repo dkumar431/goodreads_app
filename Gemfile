@@ -33,6 +33,7 @@ gem 'json'
 gem 'activerecord-session_store'
 gem 'sidekiq'                                                                  
 gem 'sidekiq-client-cli'
+require 'net/http'
 gem 'whenever', :require => false
 
 

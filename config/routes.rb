@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
 
-  root to: 'users#login'
+  root to: 'logins#show'
   
   resources :users, only: [:show] do 
     collection do
-      get :authenticate
       get :show
     end
   end
@@ -14,6 +13,16 @@ Rails.application.routes.draw do
       get :owned
     end
   end
+
+  resources :logins, only:[] do
+    collection do 
+      get :authenticate
+      get :callback
+      get :show
+    end
+  end
+
+  resources :authors
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

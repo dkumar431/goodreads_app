@@ -11,17 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161004165634) do
+ActiveRecord::Schema.define(version: 20161008163304) do
 
   create_table "authors", force: :cascade do |t|
     t.integer  "goodreads_author_id", limit: 4
     t.string   "name",                limit: 255
     t.string   "image_url",           limit: 255
-    t.string   "book_url",            limit: 255
+    t.string   "link",                limit: 255
     t.float    "rating",              limit: 24
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end
+
+  create_table "book_author_relationships", force: :cascade do |t|
+    t.integer  "book_id",    limit: 4
+    t.integer  "author_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "book_author_relationships", ["author_id"], name: "index_book_author_relationships_on_author_id", using: :btree
+  add_index "book_author_relationships", ["book_id"], name: "index_book_author_relationships_on_book_id", using: :btree
 
   create_table "book_relationships", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -67,6 +77,8 @@ ActiveRecord::Schema.define(version: 20161004165634) do
     t.datetime "updated_at",                    null: false
   end
 
+  add_foreign_key "book_author_relationships", "authors"
+  add_foreign_key "book_author_relationships", "books"
   add_foreign_key "book_relationships", "books"
   add_foreign_key "book_relationships", "users"
 end
