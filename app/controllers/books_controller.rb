@@ -13,7 +13,10 @@ class BooksController < ApplicationController
       .select("b.title,b.description,b.link,b.image_url,a.name,a.id author_id").where(id: session[:user_id])
   end
 
-  private
+  def all
+    current_user_books = BookRelationship.select("book_id").where("user_id = #{session[:user_id]}")
+    @user_books = Book.joins(:book_relationships).select("distinct books.id,title,image_url").where("books.id not in (?)",current_user_books)
+  end
   
 
 end

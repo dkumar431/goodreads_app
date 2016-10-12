@@ -1,0 +1,13 @@
+<style>
+
+
+</style>
+
+<div class="all_books">
+    <% @user_books.each do |book| %>
+        <div class="left book-container">
+            <%= image_tag (book["image_url"]) %>
+            <%= button_tag "$" %>
+        </div>
+    <% end %>
+</div>

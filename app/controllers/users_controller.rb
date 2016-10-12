@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @user_p = UserPresenter.new(user,view_context)
   end
 
+  private
+
+  
+
 
   
 end

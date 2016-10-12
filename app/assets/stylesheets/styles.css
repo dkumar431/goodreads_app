@@ -169,3 +169,36 @@ small.text-muted {
     position: fixed;
     top: 45%;
 }
+
+    .left {
+        float: left;
+    }
+    .book-container {
+        padding: 50px;
+        position: relative;
+    }
+    div.book-container:hover img{
+        opacity:0.5;
+    }
+    div.book-container:hover button {
+        display: block;
+    }   
+    div.book-container button {
+        position:absolute;
+        display:none;
+    }
+    div.book-container button {
+        top:35%;
+        left:37%;
+        width: 50px;
+        height: 50px;
+       -webkit-border-radius: 31;
+      -moz-border-radius: 31;
+      border-radius: 0px;
+      font-family: Arial;
+      color: #ffffff;
+      font-size: 30px;
+      background: #34d955;
+      text-decoration: none;
+        
+    }

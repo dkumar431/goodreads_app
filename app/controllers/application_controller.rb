@@ -16,12 +16,13 @@ class ApplicationController < ActionController::Base
     
   # end
 
-  def get_goodreads_access_token
-    session[:access_token]
+  def goodreads_client
+    @token ||= session[:access_token]
   end
 
   def check_access_token
     redirect_to authenticate_logins_path and return if session[:access_token].blank?
   end
+
 
 end

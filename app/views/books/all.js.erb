@@ -1,0 +1,2 @@
+$('#content').empty();
+$('#content').append("<%= escape_javascript render(:partial => 'books/partials/all_books', :locals => { :c => @user_books }) %>")

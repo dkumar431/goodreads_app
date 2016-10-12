@@ -1,5 +1,7 @@
 class LoginsController < ApplicationController
 
+  include GR
+
   def show
   end
 
@@ -14,22 +16,22 @@ class LoginsController < ApplicationController
     fetch_all_user_details
   end  
 
+  def logout
+    reset_session
+    redirect_to '/'
+  end
+
   private
   
   def fetch_all_user_details
-    response = get_goodreads_access_token.get('/api/auth_user')
-    user_id = Hash.from_xml(response.body)["GoodreadsResponse"]["user"]["id"]
+    user_id = GR::get_goodreads_user_id(goodreads_client)
     user = User.where(goodreads_user_id: user_id).first
     
     if user.blank?   
-      res = get_goodreads_access_token.get('/user/show/'+user_id+'.xml',{"key" => API_KEY})
-      user_details = Hash.from_xml(res.body)
-      new_user = User.new(user_params(user_details))
-      new_user.save
-      user = new_user
+      user_details = GR::get_goodreads_user_details(goodreads_client, user_id)
+      user = User.new(user_params(user_details))
         
-      res = get_goodreads_access_token.get('/owned_books/user?format=xml', {"id" => user_id})
-      book_details = Hash.from_xml(res.body)
+      book_details = GR::get_goodreads_owned_books( goodreads_client, user_id )
 
       unique_books(book_details).each do |book|
         bk = Book.where(goodreads_book_id: book[:goodreads_book_id])
@@ -51,12 +53,13 @@ class LoginsController < ApplicationController
             link: book[:authors]["author"]["link"],
             rating: book[:authors]["author"]["average_rating"]
           })
-          b.authors << a 
+           
           user.books << b
-    
-          user.save
-          b.save
+          b.authors << a
+        else 
+          user.books << bk   
         end
+        user.save
       end
     end
 
@@ -90,7 +93,7 @@ class LoginsController < ApplicationController
         }
         books_arr << book 
       end
-      books_arr.uniq! {|ele| ele[:goodreads_book_id]}
+      books_arr.uniq {|ele| ele[:goodreads_book_id]}
   end
 
 end

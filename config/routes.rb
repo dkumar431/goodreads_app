@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resource :books do 
     collection do 
       get :owned
+      get :all
     end
   end
 
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
       get :authenticate
       get :callback
       get :show
+      get :logout
     end
   end
 
