@@ -23,8 +23,12 @@ Rails.application.routes.draw do
       get :logout
     end
   end
+  
 
   resources :authors
+
+  resources :checkouts,  only: [:new, :create, :show]
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

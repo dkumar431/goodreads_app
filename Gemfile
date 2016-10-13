@@ -36,6 +36,9 @@ gem 'sidekiq-client-cli'
 require 'net/http'
 gem 'whenever', :require => false
 
+gem 'dotenv'
+gem 'braintree'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -1,13 +1,20 @@
-<style>
-
-
-</style>
 
 <div class="all_books">
     <% @user_books.each do |book| %>
         <div class="left book-container">
             <%= image_tag (book["image_url"]) %>
-            <%= button_tag "$" %>
+            <button class="button green" id="checkout">
+                <div class="title">Borrow</div>
+                <div class="price">$7</div>
+            </button>
         </div>
     <% end %>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $("#checkout").click(function(){
+            location.href = '/checkouts/new';
+        })
+    })
+</script>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  book_id: 
+  from_date: 2016-10-13 10:10:09
+  to_date: 2016-10-13 10:10:09
+  is_active: false
+
+two:
+  user_id: 
+  book_id: 
+  from_date: 2016-10-13 10:10:09
+  to_date: 2016-10-13 10:10:09
+  is_active: false

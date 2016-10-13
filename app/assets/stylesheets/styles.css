@@ -178,7 +178,7 @@ small.text-muted {
         position: relative;
     }
     div.book-container:hover img{
-        opacity:0.5;
+        opacity:0.8;
     }
     div.book-container:hover button {
         display: block;
@@ -188,17 +188,7 @@ small.text-muted {
         display:none;
     }
     div.book-container button {
-        top:35%;
-        left:37%;
-        width: 50px;
-        height: 50px;
-       -webkit-border-radius: 31;
-      -moz-border-radius: 31;
-      border-radius: 0px;
-      font-family: Arial;
-      color: #ffffff;
-      font-size: 30px;
-      background: #34d955;
-      text-decoration: none;
+        top:80%;
+        left:0%;
         
     }

@@ -1,0 +1,58 @@
+
+
+<div class="row">
+    <%= render '/layouts/partials/sidebar' %>
+    
+    <!-- main -->
+    <div class="column col-sm-9" id="main">
+        <div class="padding">
+            <div class="full col-sm-9" id="content">
+
+                
+
+                        <%= form_tag("/checkouts", method: "post", id: "payment-form") do %>
+                            <section>
+                            <div class="bt-drop-in-wrapper">
+                                <div id="bt-dropin"></div>
+                            </div>
+
+                            <label for="amount">
+                                <span class="input-label">Amount</span>
+                                <div class="input-wrapper amount-wrapper">
+                                <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="10">
+                                </div>
+                            </label>
+                            </section>
+
+                            <button class="button" type="submit"><span>Test Transaction</span></button>
+                        <% end %>
+
+                       
+
+            </div><!-- /col-9 -->
+        </div><!-- /padding -->
+    </div>
+    <!-- /main -->
+
+</div>
+
+
+<script src="https://js.braintreegateway.com/js/braintree-2.27.0.min.js"></script>
+<script>
+  (function () {
+    var checkout = new Demo({
+      formID: 'payment-form'
+    });
+
+    var client_token = "<%= @client_token %>";
+    braintree.setup(client_token, "dropin", {
+      container: "bt-dropin"
+    });
+  })()
+</script>
+
+<style>
+    
+</style>
+
+
