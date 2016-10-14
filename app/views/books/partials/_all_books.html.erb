@@ -3,7 +3,7 @@
     <% @user_books.each do |book| %>
         <div class="left book-container">
             <%= image_tag (book["image_url"]) %>
-            <button class="button green" id="checkout">
+            <button class="button green" id="checkout" data-bookid="<%=book['id']%>">
                 <div class="title">Borrow</div>
                 <div class="price">$7</div>
             </button>
@@ -14,7 +14,8 @@
 <script>
     $(document).ready(function(){
         $("#checkout").click(function(){
-            location.href = '/checkouts/new';
+            var book_id = $("#checkout").attr("data-bookid");
+            location.href = '/checkouts/new?book_id='+ book_id;
         })
     })
 </script>

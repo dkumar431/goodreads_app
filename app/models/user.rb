@@ -3,13 +3,13 @@ class User < ActiveRecord::Base
     has_many :books, :through => :book_relationships
     has_many :authors, :through => :books
 
-    def create_user(user_details)
+    def self.create_user(user_details)
         user = User.new(user_params(user_details))
     end
 
     private
 
-    def user_params(user_details)
+    def self.user_params(user_details)
     user = {
       goodreads_user_id: user_details["GoodreadsResponse"]["user"]["id"],
       name: user_details["GoodreadsResponse"]["user"]["name"],

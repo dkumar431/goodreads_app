@@ -5,7 +5,7 @@ class Book < ActiveRecord::Base
     has_many :book_author_relationships
     has_many :authors, :through => :book_author_relationships
 
-    def create_unique_books( book_details )
+    def self.create_unique_books( book_details, user )
         unique_books(book_details).each do |book|
           existing_book = Book.where(goodreads_book_id: book[:goodreads_book_id])
 
@@ -39,7 +39,7 @@ class Book < ActiveRecord::Base
 
     private
 
-    def unique_books(book_details)
+    def self.unique_books(book_details)
       books_arr = []
       book_details["GoodreadsResponse"]["owned_books"]["owned_book"].each do |b|
         book = {

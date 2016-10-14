@@ -170,25 +170,29 @@ small.text-muted {
     top: 45%;
 }
 
-    .left {
-        float: left;
-    }
-    .book-container {
-        padding: 50px;
-        position: relative;
-    }
-    div.book-container:hover img{
-        opacity:0.8;
-    }
-    div.book-container:hover button {
-        display: block;
-    }   
-    div.book-container button {
-        position:absolute;
-        display:none;
-    }
-    div.book-container button {
-        top:80%;
-        left:0%;
-        
-    }
+  .left {
+      float: left;
+  }
+  .book-container {
+      padding: 50px;
+      position: relative;
+  }
+  div.book-container:hover img{
+      opacity:0.8;
+  }
+  div.book-container:hover button {
+      display: block;
+  }   
+  div.book-container button {
+      position:absolute;
+      display:none;
+  }
+  div.book-container button {
+      top:80%;
+      left:0%;
+      
+  }
+
+div#payment{
+  width: 400px;
+} 
