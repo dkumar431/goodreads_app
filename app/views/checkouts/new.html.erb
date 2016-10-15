@@ -1,122 +1,3 @@
-<div class="row">
-    <%= render '/layouts/partials/sidebar' %>
-    
-    <!-- main -->
-    <div class="column col-sm-9" id="main">
-        <div class="padding">
-            <div class="full col-sm-9" id="content">
-                
-                <div class="col-sm-6 col-sm-offset-3 form-box">
-					
-					<form id="checkout-form">
-						Name: <input type="text">
-						<input type="submit">
-					</form>
-                        	
-                    	<form role="form" action="" method="post" class="registration-form">
-                    		
-                    		<fieldset>
-	                        	<div class="form-top">
-	                        		<div class="form-top-left">
-	                        			<h3>Step 1 / 3</h3>
-	                            		<p>Please provide the subscription details:</p>
-	                        		</div>
-	                        		<div class="form-top-right">
-	                        			<i class="fa fa-user"></i>
-	                        		</div>
-	                            </div>
-	                            <div class="form-bottom">
-			                    	<div class="form-group">
-			                    		<label class="sr-only" for="form-first-name">From Date</label>
-			                        	<input type="text" name="from_date" placeholder="Subscription Start date..." class="form-first-name form-control" id="from_date">
-			                        </div>
-			                        <div class="form-group" style="float: left;">
-			                            <% @subscription_types.each do |st| %>
-			                              <input id="option" type="radio" name="field" value="option">
-                                          <label for="option"><span><span></span></span>
-                                          $ <%= st.cost %>(<%= st.days %> days)
-                                          </label><br>
-			                              
-			                            <% end %>
-			                        </div>
-			                        <div style="float: left;padding-left: 80px;">
-			                            <%= image_tag (@book.image_url) %>
-			                         </div>
-			                         <div style="clear: both;"></div>
-			                        
-			                        <button type="button" class="btn btn-next">Next</button>
-			                    </div>
-		                    </fieldset>
-		                    
-		                    <fieldset>
-	                        	<div class="form-top">
-	                        		<div class="form-top-left">
-	                        			<h3>Step 2 / 3</h3>
-	                            		<p>Set up your account:</p>
-	                        		</div>
-	                        		<div class="form-top-right">
-	                        			<i class="fa fa-key"></i>
-	                        		</div>
-	                            </div>
-	                            <div class="form-bottom">
-			                        <div class="form-group">
-			                        	<label class="sr-only" for="form-email">Email</label>
-			                        	<input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
-			                        </div>
-			                        <div class="form-group">
-			                    		<label class="sr-only" for="form-password">Password</label>
-			                        	<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
-			                        </div>
-			                        <div class="form-group">
-			                        	<label class="sr-only" for="form-repeat-password">Repeat password</label>
-			                        	<input type="password" name="form-repeat-password" placeholder="Repeat password..." 
-			                        				class="form-repeat-password form-control" id="form-repeat-password">
-			                        </div>
-			                        <button type="button" class="btn btn-previous">Previous</button>
-			                        <button type="button" class="btn btn-next">Next</button>
-			                    </div>
-		                    </fieldset>
-		                    
-		                    <fieldset>
-	                        	<div class="form-top">
-	                        		<div class="form-top-left">
-	                        			<h3>Step 3 / 3</h3>
-	                            		<p>Social media profiles:</p>
-	                        		</div>
-	                        		<div class="form-top-right">
-	                        			<i class="fa fa-twitter"></i>
-	                        		</div>
-	                            </div>
-	                            <div class="form-bottom">
-			                    	<div class="form-group">
-			                    		<label class="sr-only" for="form-facebook">Facebook</label>
-			                        	<input type="text" name="form-facebook" placeholder="Facebook..." class="form-facebook form-control" id="form-facebook">
-			                        </div>
-			                        <div class="form-group">
-			                        	<label class="sr-only" for="form-twitter">Twitter</label>
-			                        	<input type="text" name="form-twitter" placeholder="Twitter..." class="form-twitter form-control" id="form-twitter">
-			                        </div>
-			                        <div class="form-group">
-			                        	<label class="sr-only" for="form-google-plus">Google plus</label>
-			                        	<input type="text" name="form-google-plus" placeholder="Google plus..." class="form-google-plus form-control" id="form-google-plus">
-			                        </div>
-			                        <button type="button" class="btn btn-previous">Previous</button>
-			                        <button type="button" class="btn">Sign me up!</button>
-			                    </div>
-		                    </fieldset>
-	                    
-	                    </form>
-	                    
-                    </div>
-                
-                
-
-            </div><!-- /col-9 -->
-        </div><!-- /padding -->
-    </div>
-    <!-- /main -->
-
-</div>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -125,145 +6,136 @@
         
         $( "#from_date" ).datepicker();
     })
-
-	var form = document.querySelector('#checkout-form');
-var submit = document.querySelector('input[type="submit"]');
-
-braintree.client.create({
-  // Replace this with your own authorization.
-  authorization: '<%= @client_token %>'
-}, function (clientErr, clientInstance) {
-  if (clientErr) {
-    // Handle error in client creation
-    return;
-  }
-
-  braintree.hostedFields.create({
-    client: clientInstance,
-    styles: {
-      'input': {
-        'font-size': '14pt'
-      },
-      'input.invalid': {
-        'color': 'red'
-      },
-      'input.valid': {
-        'color': 'green'
-      }
-    },
-    fields: {
+</script>
+<script src="https://js.braintreegateway.com/js/braintree-2.29.0.min.js"></script>
+<script>
+  braintree.setup("<%= @client_token %>", "custom", {
+    id: "my-sample-form",
+    hostedFields: {
       number: {
-        selector: '#card-number',
-        placeholder: '4111 1111 1111 1111'
+        selector: "#card-number"
       },
       cvv: {
-        selector: '#cvv',
-        placeholder: '123'
+        selector: "#cvv"
       },
       expirationDate: {
-        selector: '#expiration-date',
-        placeholder: '10/2019'
+        selector: "#expiration-date"
       }
     }
-  }, function (hostedFieldsErr, hostedFieldsInstance) {
-    if (hostedFieldsErr) {
-      // Handle error in Hosted Fields creation
-      return;
-    }
-
-    submit.removeAttribute('disabled');
-
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
-        if (tokenizeErr) {
-          // Handle error in Hosted Fields tokenization
-          return;
-        }
-
-        // Put `payload.nonce` into the `payment-method-nonce` input, and then
-        // submit the form. Alternatively, you could send the nonce to your server
-        // with AJAX.
-        document.querySelector('input[name="payment-method-nonce"]').value = payload.nonce;
-        form.submit();
-      });
-    }, false);
   });
-});
-
-	
 </script>
 
-<style>
-    input[type=checkbox]:not(old),
-input[type=radio   ]:not(old){
-  width     : 2em;
-  margin    : 0;
-  padding   : 0;
-  font-size : 1em;
-  opacity   : 0;
-}
+<div class="row">
+  <%= render '/layouts/partials/sidebar' %>
+    
+  <!-- main -->
+  <div class="column col-sm-9" id="main">
+    <div class="padding">
+      <div class="full col-sm-9" id="content">
+        
+        <div class="col-sm-6 col-sm-offset-3 form-box">
+        	<form role="form" action="" id="my-sample-form" method="post" class="registration-form">
+        		<fieldset>
+              	<div class="form-top">
+              		<div class="form-top-left">
+              			<h3>Step 1 / 3</h3>
+                  		<p>Please provide the subscription details:</p>
+              		</div>
+              		<div class="form-top-right">
+              			<i class="fa fa-user"></i>
+              		</div>
+                  </div>
+                  <div class="form-bottom">
+              	<div class="form-group">
+              		<label class="sr-only" for="form-first-name">From Date</label>
+                  	<input type="text" name="from_date" placeholder="Subscription Start date..." class="form-first-name form-control" id="from_date">
+                  </div>
+                  <div class="form-group" style="float: left;">
+                      <% @subscription_types.each do |st| %>
+                        <input id="option" type="radio" name="field" value="option">
+                              <label for="option"><span><span></span></span>
+                              $ <%= st.cost %>(<%= st.days %> days)
+                              </label><br>
+                        
+                      <% end %>
+                  </div>
+                  <div style="float: left;padding-left: 80px;">
+                      <%= image_tag (@book.image_url) %>
+                   </div>
+                   <div style="clear: both;"></div>
+                  
+                  <button type="button" class="btn btn-next">Next</button>
+              </div>
+            </fieldset>
+            
+            <fieldset>
+              	<div class="form-top">
+              		<div class="form-top-left">
+              			<h3>Step 2 / 3</h3>
+                  		<p>Provide your card details:</p>
+              		</div>
+              		<div class="form-top-right">
+              			<i class="fa fa-key"></i>
+              		</div>
+                  </div>
+                  <div class="form-bottom">
+                  <div class="form-group">
+                  	<label class="sr-only" for="form-email">Card Number</label>
+                  	<input type="text" name="form-email" placeholder="" class="form-email form-control" id="card-number">
+                  	<!--<div id="card-number"></div>-->
+                  </div>
+                  <div class="form-group">
+              		<label class="sr-only" for="form-password">CVV</label>
+                  	<input type="text" name="form-password" placeholder="" class="form-password form-control" id="cvv">
+                  	<!--<div id="cvv"></div>-->
+                  </div>
+                  <div class="form-group">
+                  	<label class="sr-only" for="form-repeat-password">Expiration Date</label>
+                  	<input type="text" name="form-repeat-password" placeholder="" 
+                  				class="form-repeat-password form-control" id="expiration-date">
+                  	<!--<div id="expiration-date"></div>-->
+                  </div>
+                  <button type="button" class="btn btn-previous">Previous</button>
+                  <button type="button" class="btn btn-next">Next</button>
+              </div>
+            </fieldset>
+            
+            <fieldset>
+              	<div class="form-top">
+              		<div class="form-top-left">
+              			<h3>Step 3 / 3</h3>
+                  		<p>Social media profiles:</p>
+              		</div>
+              		<div class="form-top-right">
+              			<i class="fa fa-twitter"></i>
+              		</div>
+                  </div>
+                  <div class="form-bottom">
+              	<div class="form-group">
+              		<label class="sr-only" for="form-facebook">Facebook</label>
+                  	<input type="text" name="form-facebook" placeholder="Facebook..." class="form-facebook form-control" id="form-facebook">
+                  </div>
+                  <div class="form-group">
+                  	<label class="sr-only" for="form-twitter">Twitter</label>
+                  	<input type="text" name="form-twitter" placeholder="Twitter..." class="form-twitter form-control" id="form-twitter">
+                  </div>
+                  <div class="form-group">
+                  	<label class="sr-only" for="form-google-plus">Google plus</label>
+                  	<input type="text" name="form-google-plus" placeholder="Google plus..." class="form-google-plus form-control" id="form-google-plus">
+                  </div>
+                  <button type="button" class="btn btn-previous">Previous</button>
+                  <button type="button" class="btn">Sign me up!</button>
+              </div>
+            </fieldset>
+          
+          </form>
+	     </div>
+      </div><!-- /col-9 -->
+    </div><!-- /padding -->
+  </div>
+  <!-- /main -->
 
-input[type=checkbox]:not(old) + label,
-input[type=radio   ]:not(old) + label{
-  display      : inline-block;
-  margin-left  : -2em;
-  line-height  : 1.5em;
-}
+</div>
 
-input[type=checkbox]:not(old) + label > span,
-input[type=radio   ]:not(old) + label > span{
-  display          : inline-block;
-  width            : 0.875em;
-  height           : 0.875em;
-  margin           : 0.25em 0.5em 0.25em 0.25em;
-  border           : 0.0625em solid rgb(192,192,192);
-  border-radius    : 0.25em;
-  background       : rgb(224,224,224);
-  background-image :    -moz-linear-gradient(rgb(240,240,240),rgb(224,224,224));
-  background-image :     -ms-linear-gradient(rgb(240,240,240),rgb(224,224,224));
-  background-image :      -o-linear-gradient(rgb(240,240,240),rgb(224,224,224));
-  background-image : -webkit-linear-gradient(rgb(240,240,240),rgb(224,224,224));
-  background-image :         linear-gradient(rgb(240,240,240),rgb(224,224,224));
-  vertical-align   : bottom;
-}
-
-input[type=checkbox]:not(old):checked + label > span,
-input[type=radio   ]:not(old):checked + label > span{
-  background-image :    -moz-linear-gradient(rgb(224,224,224),rgb(240,240,240));
-  background-image :     -ms-linear-gradient(rgb(224,224,224),rgb(240,240,240));
-  background-image :      -o-linear-gradient(rgb(224,224,224),rgb(240,240,240));
-  background-image : -webkit-linear-gradient(rgb(224,224,224),rgb(240,240,240));
-  background-image :         linear-gradient(rgb(224,224,224),rgb(240,240,240));
-}
-
-input[type=checkbox]:not(old):checked + label > span:before{
-  content     : '✓';
-  display     : block;
-  width       : 1em;
-  color       : rgb(153,204,102);
-  font-size   : 0.875em;
-  line-height : 1em;
-  text-align  : center;
-  text-shadow : 0 0 0.0714em rgb(115,153,77);
-  font-weight : bold;
-}
-
-input[type=radio]:not(old):checked + label > span > span{
-  display          : block;
-  width            : 0.5em;
-  height           : 0.5em;
-  margin           : 0.125em;
-  border           : 0.0625em solid rgb(115,153,77);
-  border-radius    : 0.125em;
-  background       : rgb(153,204,102);
-  background-image :    -moz-linear-gradient(rgb(179,217,140),rgb(153,204,102));
-  background-image :     -ms-linear-gradient(rgb(179,217,140),rgb(153,204,102));
-  background-image :      -o-linear-gradient(rgb(179,217,140),rgb(153,204,102));
-  background-image : -webkit-linear-gradient(rgb(179,217,140),rgb(153,204,102));
-  background-image :         linear-gradient(rgb(179,217,140),rgb(153,204,102));
-}
-</style>
 
 
