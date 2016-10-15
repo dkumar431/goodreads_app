@@ -19,4 +19,16 @@ class CheckoutsController < ApplicationController
 
   def show
   end
+
+  def create
+    
+    result = Braintree::Transaction.sale(
+      :amount => params["amount"],
+      :payment_method_nonce => params["nounce"],
+      :options => {
+        :submit_for_settlement => true
+      }
+    )
+    binding.pry
+  end
 end

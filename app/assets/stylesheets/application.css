@@ -13,4 +13,8 @@
  *= require_tree .
  *= require_self
  *= require tooltip
+ *= require bootstrap.min
+ *= require multistep
+ *= require button
+ *= require radio
  */
