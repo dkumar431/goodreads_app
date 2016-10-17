@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     collection do 
       get :owned
       get :all
+      get :borrowed
     end
   end
 
@@ -27,7 +28,8 @@ Rails.application.routes.draw do
 
   resources :authors
 
-  resources :checkouts,  only: [:new, :create, :show] 
+  resources :checkouts,  only: [:new, :create, :show] do
+  end 
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

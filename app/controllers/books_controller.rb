@@ -14,9 +14,24 @@ class BooksController < ApplicationController
   end
 
   def all
-    current_user_books = BookRelationship.select("book_id").where("user_id = #{session[:user_id]}")
-    @user_books = Book.joins(:book_relationships).select("distinct books.id,title,image_url").where("books.id not in (?)",current_user_books)
+    @available_books =  Book.get_available_books                        
   end
   
+  def borrowed
+
+    user = User.where(id: session[:user_id]).first
+    @user_p = UserPresenter.new(user,view_context)
+
+    @books = User.select("B.*,S.*")
+      .joins("INNER JOIN SUBSCRIPTIONS S 
+              ON USERS.ID = S.USER_ID 
+            INNER JOIN BOOKS B 
+              ON B.ID = S.BOOK_ID")
+      .where({id: session[:user_id]})
+    
+    #user = User.where({id: 10}).first
+    #@books = user.subscriptions.includes(:book)  
+
+  end
 
 end

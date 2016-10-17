@@ -1,0 +1,36 @@
+
+<div class="row">
+  <%= render '/layouts/partials/sidebar' %>
+    
+  <!-- main -->
+  <div class="column col-sm-9" id="main">
+    <div class="padding">
+      <div class="full col-sm-9" id="content">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @books.each do |book| %>
+            <tr class="success">
+              <td><%= book.title %></td>
+              <td><%= format_date(book.from_date) %></td>
+              <td><%= format_date(book.to_date) %></td>
+              <td><%= show_status(book.is_active) %></td>
+            </tr>
+          <% end %>  
+          </tbody>
+        </table>
+      </div><!-- /col-9 -->
+    </div><!-- /padding -->
+  </div>
+  <!-- /main -->
+
+</div><!-- /row -->
+
+

@@ -11,6 +11,7 @@ class UserPresenter
     h.time_ago_in_words(@user.created_at)
   end
   
+  
   private
 
   def h

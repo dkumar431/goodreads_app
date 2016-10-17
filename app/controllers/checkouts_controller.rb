@@ -1,16 +1,10 @@
 class CheckoutsController < ApplicationController
+  before_action :prepare_user_for_side_bar, only: :new
+
   def new
-    user = User.where(id: session[:user_id]).first
-    
-    if (params[:book_id])
-      @book = Book.where(id: params[:book_id]).first
-    else 
-      redirect_to '/'
-    end
-    
-    @user_p = UserPresenter.new(user,view_context)
-    
-    @subscription_types = SubscriptionType.all
+    @book = Book.get_book(params[:id])
+    redirect_to root_path if @book.nil?
+    @subscription_types = SubscriptionType.get_subscription_types
     @client_token = Braintree::ClientToken.generate
   end
 
@@ -30,5 +24,8 @@ class CheckoutsController < ApplicationController
       }
     )
     binding.pry
+    
+    Subscription.create_subscription(result, session[:user_id], params)
+    redirect_to borrowed_books_path
   end
 end

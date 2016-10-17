@@ -6,7 +6,7 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $( "#from_date" ).datepicker();
+    $( "#from_date" ).datepicker({ dateFormat: 'dd/mm/yy' });
   })
 
   braintree.client.create({
@@ -96,6 +96,7 @@
       });
 
       $('#cardForm').submit(function (event) {
+        $('#loader').show();
         event.preventDefault();
 
         hostedFieldsInstance.tokenize(function (err, payload) {
@@ -107,12 +108,27 @@
           // This is where you would submit payload.nonce to your server
           //alert('Submit your nonce to your server here!');
           var amount = $('input[name=sub_type]:checked').val();
-          var payment_data = { "amount" : amount, "nounce" : payload.nonce }
+          var book_id = "<%= params['book_id'] %>";
+          var sub_type_id = $('input[name=sub_type]:checked').attr("data-sub-type");
+          var sub_start_date = $("#from_date").val();
+          var payment_data = { 
+              "book_id" : book_id,
+              "sub_type_id" : sub_type_id, 
+              "sub_start_date": sub_start_date, 
+              "amount" : amount, 
+              "nounce" : payload.nonce 
+          }
 
           $.ajax({
             url: "/checkouts", 
             data: payment_data,
             method: "post",
+            beforeSend: function() {
+              
+            },
+            complete: function(){
+              $('#loader').hide();
+            },
             success: function(result){
               console.log("success..");
             }
@@ -150,14 +166,14 @@
                   </div>
                   <div class="form-group" style="float: left;">
                       <% @subscription_types.each do |st| %>
-                        <input id="sub_type" type="radio" name="sub_type" value="<%= st.cost %>">
+                        <input id="sub_type" type="radio" name="sub_type" data-sub-type="<%= st.id %>" value="<%= st.cost %>">
                               <label for="option"><span><span></span></span>
                               $ <%= st.cost %>(<%= st.days %> days)
                               </label><br>
                         
                       <% end %>
                   </div>
-                  <div style="float: left;padding-left: 80px;">
+                  <div style="float: right;padding-left: 80px;">
                       <%= image_tag (@book.image_url) %>
                    </div>
                    <div style="clear: both;"></div>
@@ -235,6 +251,7 @@
               </div>
             </fieldset>
           </form>
+          <div id="loader" style="display:none;">Payment Processing...</div>
 	     </div>
 
       </div><!-- /col-9 -->

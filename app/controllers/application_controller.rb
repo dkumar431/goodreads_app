@@ -20,6 +20,11 @@ class ApplicationController < ActionController::Base
     @token ||= session[:access_token]
   end
 
+  def prepare_user_for_side_bar
+    user = User.where(id: session[:user_id]).first
+    @user_p = UserPresenter.new(user,view_context)
+  end
+
   def check_access_token
     redirect_to authenticate_logins_path and return if session[:access_token].blank?
   end

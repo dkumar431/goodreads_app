@@ -1,20 +1,24 @@
 
 <div class="all_books">
-    <% @user_books.each do |book| %>
+    <% @available_books.each do |book| %>
         <div class="left book-container">
             <%= image_tag (book["image_url"]) %>
-            <button class="button green" id="checkout" data-bookid="<%=book['id']%>">
+<!--
+            <button class="button checkout <%= get_color(book['available']) %>"  data-bookid="<%=book['id']%>">
                 <div class="title">Borrow</div>
-                <div class="price">$7</div>
+                <div class="price"><%= book['available'] %>available</div>
             </button>
+            -->
+        <%= link_to 'Get this book', new_checkout_path(id: book['id']) %>
         </div>
+        
     <% end %>
 </div>
 
 <script>
     $(document).ready(function(){
-        $("#checkout").click(function(){
-            var book_id = $("#checkout").attr("data-bookid");
+        $(".checkout").click(function(){
+            var book_id = $(this).attr("data-bookid");
             location.href = '/checkouts/new?book_id='+ book_id;
         })
     })
